@@ -29,6 +29,10 @@ public class GestorEquipos {
     public void aggEquipo(Scanner sc){
         System.out.println("Ingrese el nombre del equipo: \n");
         Equipo equipox = new Equipo(sc.nextLine());
+        while(exist(equipox.getNombre())){
+            System.out.println("Ese equipo ya existe.");
+            equipox = new Equipo(sc.nextLine());
+        }
         this.equipos.add(equipox);
         System.out.println(String.format("Equipo %s agregado.",equipox.getNombre()));
     }
@@ -102,8 +106,50 @@ public class GestorEquipos {
         System.out.println(String.format("%-15s %2s %2s %2s %2s %2s %2s %2s",
                 "Equipo", "PJ", "PG", "PP", "PE", "GF", "GC", "TP"));
         System.out.println("-----------------------------------------------------");
-        for (Equipo equipo : equipos) {
+        
+        ArrayList<Equipo> clone = new ArrayList<>(this.equipos);
+        
+        sort(clone, 0, clone.size() - 1);
+
+        for (Equipo equipo : clone) {
             System.out.println(equipo);
         }
+    }
+    public boolean exist(String nombre){
+        for (Equipo equipo : equipos) {
+            if(nombre.equalsIgnoreCase(equipo.getNombre())){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void sort(ArrayList<Equipo> lista, int izq, int der){
+        if(izq < der){
+            int partition = sortPartition(izq, der, lista);
+            sort(lista, izq, partition - 1);
+            sort(lista, partition + 1, der);
+        }
+
+    }
+
+    public int sortPartition(int posInicial, int posFinal, ArrayList<Equipo> arr){
+        int pivote = arr.get(posFinal).getPuntos();
+        int i = posInicial;
+        int j = posInicial;
+
+        while( i <= posFinal){
+            if( arr.get(i).getPuntos() >= pivote ){
+                Equipo temp = arr.get(i);
+                int indexi = arr.indexOf(temp);
+                int indexj = arr.indexOf(arr.get(j));
+                arr.set(indexi, arr.get(j));
+                arr.set(indexj, temp);
+                j++;
+            }
+            i++;
+        }
+        return j - 1;
     }
 }
