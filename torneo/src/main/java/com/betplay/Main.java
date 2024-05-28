@@ -1,4 +1,5 @@
 package com.betplay;
+import java.io.IOException;
 import java.util.Scanner;
 
 import com.betplay.modulos.Equipo;
@@ -9,9 +10,8 @@ public class Main {
     public static void main(String[] args) {
         
         GestorEquipos equipos = new GestorEquipos();
-
+        clear();
         System.out.println("\nBienvenido a la liga de betPlay");
-
         Scanner sc = new Scanner(System.in);
         while (true) {
             
@@ -19,7 +19,11 @@ public class Main {
             int opt = validarInt(sc);
             if(opt == 1 )
             {
+                clear();
                 equipos.aggEquipo(sc);
+                System.out.println("Presione enter para continuar");
+                sc.nextLine();
+                clear();
             }
             else if(opt == 2)
             {   
@@ -187,4 +191,16 @@ public class Main {
         System.out.println(String.format("Promedio de goles por patido: ", avgGoles));
     }
 
+    private static void clear(){
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (IOException | InterruptedException ex) {
+            ex.printStackTrace();
+        }
+    }
 }
