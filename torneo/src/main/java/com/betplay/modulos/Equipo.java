@@ -1,5 +1,11 @@
 package com.betplay.modulos;
 
+import java.util.ArrayList;
+
+import com.betplay.modulos.cuerpos.CuerpoMedico;
+import com.betplay.modulos.cuerpos.CuerpoTecnico;
+import com.betplay.modulos.roles.Jugador;
+
 public class Equipo {
 
     private String nombre;
@@ -10,10 +16,30 @@ public class Equipo {
     private int golesFavor = 0;
     private int golesContra = 0;
     private int puntos = 0;
+    private CuerpoTecnico cuerpoTecnico;
+    private CuerpoMedico cuerpoMedico;
+    private ArrayList<Jugador> jugadores;
     
     public Equipo(String nombreEquipo){
         this.nombre = nombreEquipo;
     }
+
+    public void agregarCuerpoT(CuerpoTecnico cuerpoTecnico){
+        this.cuerpoTecnico = cuerpoTecnico;
+    }
+
+    public void agregarCuerpoM(CuerpoMedico cuerpoMedico){
+        this.cuerpoMedico = cuerpoMedico;
+    }
+
+    public void agregarJugadores(){
+        //necesarios 11 suplentes 11
+        for (int i = 0; i < 11; i++) {
+            
+        }
+    }
+
+
 
     public void gano(){
         this.partidosJugados++;
