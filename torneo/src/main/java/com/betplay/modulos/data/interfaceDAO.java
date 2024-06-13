@@ -8,5 +8,5 @@ public interface interfaceDAO<ID,T> {
     void create(T element);
     void delete(ID id);
     HashMap <ID, T> getList();
-
+    boolean exist(T element);
 }

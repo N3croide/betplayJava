@@ -97,7 +97,7 @@ public class Equipo {
         return puntos;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

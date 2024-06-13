@@ -3,13 +3,20 @@ package com.betplay.modulos;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.betplay.modulos.data.EquiposDAO;
+
+
+
 public class Gestor {
     private ArrayList<Equipo> equipos;
     private ArrayList<Partido> partidos;
+    private EquiposDAO equipoDAO;
 
     public Gestor(){
+        this.equipoDAO = new EquiposDAO();
         this.equipos = new ArrayList<>();
         this.partidos = new ArrayList<>();
+        equipoDAO.load();
     }
 
     public int size(){
@@ -28,13 +35,13 @@ public class Gestor {
 
     public void aggEquipo(Scanner sc){
         System.out.println("Ingrese el nombre del equipo: \n");
-        Equipo equipox = new Equipo(sc.nextLine());
-        while(exist(equipox.getNombre())){
+        Equipo equipo = new Equipo(sc.nextLine());
+        while(equipoDAO.exist(equipo)){
             System.out.println("Ese equipo ya existe.");
-            equipox = new Equipo(sc.nextLine());
+            equipo = new Equipo(sc.nextLine());
         }
-        this.equipos.add(equipox);
-        System.out.println(String.format("Equipo %s agregado.",equipox.getNombre()));
+        equipoDAO.create(equipo);
+        System.out.println(String.format("Equipo %s agregado.",equipo.getNombre()));
     }
 
     public void addPartido(Partido p){

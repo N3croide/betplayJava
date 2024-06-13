@@ -1,7 +1,7 @@
 package com.betplay.modulos.data;
 
 import com.betplay.modulos.Tuple;
-
+import com.betplay.modulos.Equipo;
 import com.betplay.modulos.Partido;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,7 +16,7 @@ public class PartidosDAO implements interfaceDAO <Tuple, Partido>{
     
     private HashMap <Tuple, Partido> partidos;
     private Gson gson;
-    private final String path = "data/partidos.json";
+    private final String path = "betplayJava/torneo/src/main/java/jsonData/partidos.json";
 
     public PartidosDAO(){
         this.gson = new GsonBuilder().setPrettyPrinting().create();
@@ -57,6 +57,16 @@ public class PartidosDAO implements interfaceDAO <Tuple, Partido>{
     @Override
     public HashMap<Tuple, Partido> getList(){
         return partidos;
+    }
+
+        @Override
+    public boolean exist(Partido partidoNuevo){
+        for (Partido partido : this.partidos.values()) {
+            if ( partidoNuevo.getId() == partido.getId() ) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

@@ -9,22 +9,20 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 
 import com.betplay.modulos.Equipo;
-import com.betplay.modulos.Partido;
-import com.betplay.modulos.Tuple;
 
-public class EequiposDAO implements interfaceDAO <Integer, Equipo> {
+public class EquiposDAO implements interfaceDAO <Integer, Equipo> {
     private HashMap <Integer ,Equipo> equipos;
     private Gson gson;
-    private final String path = "data/equipo.json";
+    private final String PATH = "betplayJava/torneo/src/main/java/jsonData/equipo.json";
 
-    public EequiposDAO(){
+    public EquiposDAO(){
         this.gson = new GsonBuilder().setPrettyPrinting().create();
         this.equipos = load();
     }
 
     @Override
     public HashMap<Integer ,Equipo> load(){
-        try (Reader reader = new FileReader(path)) {
+        try (Reader reader = new FileReader(PATH)) {
             Type type = new TypeToken<HashMap<Integer ,Equipo>>() {}.getType();
            return gson.fromJson(reader, type);
         } catch (IOException e) {
@@ -34,9 +32,9 @@ public class EequiposDAO implements interfaceDAO <Integer, Equipo> {
 
     @Override
     public void save(){
-        try (Writer writer = new FileWriter(path)){
+        try (Writer writer = new FileWriter(PATH)){
             gson.toJson(equipos ,writer);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -58,4 +56,13 @@ public class EequiposDAO implements interfaceDAO <Integer, Equipo> {
         return equipos;
     }
 
+    @Override
+    public boolean exist(Equipo equipoNuevo){
+        for (Equipo equipo : this.equipos.values()) {
+            if ((equipoNuevo.getId() == equipo.getId()) || ( (equipoNuevo.getNombre().toLowerCase()).equals(equipo.getNombre().toLowerCase()) )) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

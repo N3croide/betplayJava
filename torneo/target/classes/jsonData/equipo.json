@@ -1,0 +1,14 @@
+{
+  "null": {
+    "nombre": "A",
+    "partidosJugados": 0,
+    "partidosGanados": 0,
+    "partidosPerdidos": 0,
+    "partidosEmpatados": 0,
+    "golesFavor": 0,
+    "golesContra": 0,
+    "puntos": 0,
+    "cuerpoTecnico": {},
+    "cuerpoMedico": {}
+  }
+}
