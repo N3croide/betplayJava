@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 import com.betplay.modulos.Equipo;
 import com.betplay.modulos.Partido;
-import com.betplay.modulos.GestorEquipos;
+import com.betplay.modulos.Gestor;
 
 public class Main {
     public static void main(String[] args) {
         
-        GestorEquipos equipos = new GestorEquipos();
+        Gestor equipos = new Gestor();
         clear();
         System.out.println("\nBienvenido a la liga de betPlay");
         Scanner sc = new Scanner(System.in);
@@ -122,7 +122,7 @@ public class Main {
         return iEquipo - 1;
     }
 
-    private static void partido(Scanner sc, GestorEquipos equipos){
+    private static void partido(Scanner sc, Gestor equipos){
         int iEquipoLocal, iEquipoVisitante, golesLocal, golesVisitante;
         
         System.out.println("Ingrese la fecha: ");
@@ -162,31 +162,30 @@ public class Main {
         newPartido.determinarGanador();
     }
 
-    private static void equipoMasGolesF(GestorEquipos equipos){
+    private static void equipoMasGolesF(Gestor equipos){
         Equipo maxGolesF = equipos.maxGoles();
         System.out.println(String.format("El equipo con mas goles a favor es %s con %d goles.",
         maxGolesF.getNombre(), maxGolesF.getGolesFavor()));
-
     }
 
-    private static void equipoMasPuntos(GestorEquipos equipos){
+    private static void equipoMasPuntos(Gestor equipos){
         Equipo maxPuntos = equipos.maxPuntos();
         System.out.println(String.format("El equipo con mas puntos es %s con %d puntos",
          maxPuntos.getNombre(), maxPuntos.getPuntos()));
     }
     
-    private static void equipoMasWins(GestorEquipos equipos){
+    private static void equipoMasWins(Gestor equipos){
         Equipo maxPuntos = equipos.maxWins();
         System.out.println(String.format("El equipo con partidos ganados es %s con %d partidos ganados",
             maxPuntos.getNombre(), maxPuntos.getPartidosGanados()));
     }
     
-    private static void totalGoles(GestorEquipos equipos){
+    private static void totalGoles(Gestor equipos){
         int goles = equipos.totalGoles();
         System.out.println(String.format("El total de goles este torneo: %d", goles));
     }
 
-    private static void promeidoGoles(GestorEquipos equipos){
+    private static void promeidoGoles(Gestor equipos){
         int avgGoles = equipos.avgGoles();
         System.out.println(String.format("Promedio de goles por patido: ", avgGoles));
     }

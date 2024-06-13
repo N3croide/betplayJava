@@ -1,14 +1,16 @@
-package com.betplay.modulos;
+package com.betplay.modulos.personas;
 
-public class Persona {
+public abstract class Persona {
     private String nombre;
     private String apellidos;
     private int edad;
-    private String rol;
+    private Rol rol;
+    private Integer id;
+
 
     public Persona(){}
 
-    public Persona(String nombre, String apellidos, int edad, String rol){
+    public Persona(String nombre, String apellidos, int edad, Rol rol){
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.edad = edad;
@@ -27,8 +29,16 @@ public class Persona {
         return edad;
     }
 
-    public String getRol() {
+    public Rol getRol() {
         return rol;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getNombreCompleto(){
+        return this.nombre +" "+ this.apellidos;
     }
 }
 

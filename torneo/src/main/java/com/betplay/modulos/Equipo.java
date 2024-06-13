@@ -1,13 +1,14 @@
 package com.betplay.modulos;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-import com.betplay.modulos.cuerpos.CuerpoMedico;
-import com.betplay.modulos.cuerpos.CuerpoTecnico;
-import com.betplay.modulos.roles.Jugador;
+import com.betplay.modulos.personas.Jugador;
+import com.betplay.modulos.personas.MiembroEquipo;
 
 public class Equipo {
 
+    private Integer id;
     private String nombre;
     private int partidosJugados = 0;
     private int partidosGanados = 0;
@@ -16,20 +17,22 @@ public class Equipo {
     private int golesFavor = 0;
     private int golesContra = 0;
     private int puntos = 0;
-    private CuerpoTecnico cuerpoTecnico;
-    private CuerpoMedico cuerpoMedico;
-    private ArrayList<Jugador> jugadores;
+    private HashMap<Integer, MiembroEquipo> cuerpoTecnico;
+    private HashMap<Integer, MiembroEquipo> cuerpoMedico;
+    private HashMap<Integer, Jugador> jugadores;
     
     public Equipo(String nombreEquipo){
         this.nombre = nombreEquipo;
+        cuerpoTecnico = new HashMap<>();
+        cuerpoMedico = new HashMap<>();
     }
 
-    public void agregarCuerpoT(CuerpoTecnico cuerpoTecnico){
-        this.cuerpoTecnico = cuerpoTecnico;
+    public void agregarCuerpoT(MiembroEquipo cuerpoTecnico){
+        this.cuerpoTecnico.put(cuerpoTecnico.getId(), cuerpoTecnico);
     }
 
-    public void agregarCuerpoM(CuerpoMedico cuerpoMedico){
-        this.cuerpoMedico = cuerpoMedico;
+    public void agregarCuerpoM(MiembroEquipo cuerpoMedico){
+        this.cuerpoMedico.put(cuerpoMedico.getId(), cuerpoMedico);
     }
 
     public void agregarJugadores(){
@@ -38,8 +41,6 @@ public class Equipo {
             
         }
     }
-
-
 
     public void gano(){
         this.partidosJugados++;
@@ -64,9 +65,6 @@ public class Equipo {
         this.golesContra += goles;
     }
 
-    public String print(){
-        return String.format("hola");
-    }
     public String getNombre(){
         return this.nombre;
     }
@@ -97,6 +95,50 @@ public class Equipo {
 
     public int getPuntos() {
         return puntos;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public HashMap getCuerpoTecnico() {
+        return cuerpoTecnico;
+    }
+
+    public HashMap getCuerpoMedico() {
+        return cuerpoMedico;
+    }
+
+    public HashMap getJugadores() {
+        return jugadores;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setPartidosJugados(int partidosJugados) {
+        this.partidosJugados = partidosJugados;
+    }
+
+    public void setPartidosGanados(int partidosGanados) {
+        this.partidosGanados = partidosGanados;
+    }
+
+    public void setPartidosPerdidos(int partidosPerdidos) {
+        this.partidosPerdidos = partidosPerdidos;
+    }
+
+    public void setPartidosEmpatados(int partidosEmpatados) {
+        this.partidosEmpatados = partidosEmpatados;
+    }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
     }
 
     @Override

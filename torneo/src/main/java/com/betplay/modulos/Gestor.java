@@ -3,11 +3,11 @@ package com.betplay.modulos;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GestorEquipos {
+public class Gestor {
     private ArrayList<Equipo> equipos;
     private ArrayList<Partido> partidos;
 
-    public GestorEquipos(){
+    public Gestor(){
         this.equipos = new ArrayList<>();
         this.partidos = new ArrayList<>();
     }

@@ -1,6 +1,4 @@
-package com.betplay.modulos.roles;
-
-import com.betplay.modulos.Persona;
+package com.betplay.modulos.personas;
 
 public class Jugador extends Persona{
     private int dorsal;
@@ -11,9 +9,10 @@ public class Jugador extends Persona{
     private int totalTr; //TARJETAS ROJAS
     private int totalTa; //TARJETAS AMARILLAS
     
-    public Jugador(String nombre, String apellidos, int edad, String rol, int dorsal, String posJuego,
+    public Jugador(String nombre, String apellidos, int edad, int dorsal, String posJuego,
             String nacionalidad, String fechaIngreso, int golesAnotados, int totalTr, int totalTa){
-        super(nombre, apellidos, edad, rol);
+                
+        super(nombre, apellidos, edad, Rol.Jugador);
         this.dorsal = dorsal;
         this.posJuego = posJuego;
         this.nacionalidad = nacionalidad;
